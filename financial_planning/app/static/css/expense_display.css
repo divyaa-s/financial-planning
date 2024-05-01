@@ -1,0 +1,64 @@
+/* General page styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0; /* Light gray background */
+}
+
+.container {
+    max-width: 800px !important;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Style for summary boxes */
+.summary-box {
+    margin-bottom: 20px;
+}
+
+.box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+p {
+    margin: 0;
+    font-weight: bold;
+}
+
+/* Navigation buttons */
+.navigation-buttons {
+    text-align: center;
+}
+
+.navigation-buttons button {
+    width: 50%;
+    margin: 10px 0;
+    justify-content: center;
+    padding: 12px 0;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.navigation-buttons button:hover {
+    background-color: #005bb5;
+}
+.nav-icons {
+    display: flex;
+    justify-content: space-around; /* Center the buttons horizontally */
+    margin-top: 30px;
+}

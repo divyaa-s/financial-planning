@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Summary</title>
+    <link rel="stylesheet" href="{% static 'css/expense_display.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Financial Summary</h1>
+
+        <div class="summary-box">
+            <p><strong>Total Amount Spent:</strong></p>
+            <div class="box">
+                ₹{{ total_spent }}
+            </div>
+        </div>
+
+        <div class="summary-box">
+            <p><strong>Available Balance:</strong></p>
+            <div class="box">
+                ₹{{ available_balance }}
+            </div>
+        </div>
+
+        <h2>Financial Data</h2>
+        <table border='1'>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Income</th>
+                    <th>Food</th>
+                    <th>Transportation</th>
+                    <th>Entertainment</th>
+                    <th>Utilities</th>
+                    <th>Other</th>
+                    <th>Daily Expenses</th>
+                    <th>Balance</th>
+                    <th>Goal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if last_row %}
+                <tr>
+                    {% for key, value in last_row.items %}
+                    <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="9">No financial data available.</td>
+                </tr>
+                {% endif %}
+            </tbody>
+        </table>        
+    </div>
+    <div class="navigation-buttons">
+        <button onclick="window.location.href='{% url 'dashboard' %}'">Dashboard</button>
+    </div>
+
+    
+</body>
+</html>

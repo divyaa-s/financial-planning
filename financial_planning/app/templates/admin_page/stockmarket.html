@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Stock Market Data</title>
+</head>
+<body>
+    <h1>Real-Time Stock Market Data</h1>
+    <p>Symbol: {{ stock_data.symbol }}</p>
+    <p>Price: ${{ stock_data.price }}</p>
+    <p>Change: ${{ stock_data.change }}</p>
+    <p>Percent Change: {{ stock_data.percent_change }}</p>
+</body>
+</html>
