@@ -1,0 +1,70 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/stock.css' %}">
+    <title>Microsoft Stock Price</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Microsoft Stock Price</h1>
+    
+    <!-- Stock buttons -->
+    <div id="stock-buttons">
+        <button onclick="window.location.href='{% url 'stocks' %}'">Apple</button>
+        <button onclick="window.location.href='{% url 'google' %}'">Google</button>
+        <button onclick="window.location.href='{% url 'microsoft' %}'">Microsoft</button>
+        <button onclick="window.location.href='{% url 'tcs' %}'">TCS</button>
+    </div>
+
+    <!-- Stock chart -->
+    <div id="stock-chart"></div>
+
+    <script>
+        // Retrieve data from the context passed from the view
+        var dates = {{ dates|safe }};
+        var prices = {{ prices|safe }};
+
+        // Create a plotly chart
+        var trace = {
+            x: dates,
+            y: prices,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Microsoft Stock (MSFT)',
+            line: {color: '#17BECF'}
+        };
+
+        var data = [trace];
+
+        var layout = {
+            title: 'Microsoft Stock Price',
+            xaxis: {
+                title: 'Date'
+            },
+            yaxis: {
+                title: 'Price (INR)'
+            }
+        };
+
+        Plotly.newPlot('stock-chart', data, layout);
+
+    </script>
+
+    <div id="recommendations">
+        <h2>Recommended Investments</h2>
+        <p><strong>Current Stock Price:</strong> ₹{{ request.GET.current_stock_price }}</p>
+        <p><strong>User Goal:</strong> ₹{{ request.GET.goal }}</p>
+        <p><strong>Recommended Investment Amount:</strong> ₹{{ request.GET.predicted_investment }}</p>
+    </div>
+
+    <div class="navigation-buttons">
+        <button onclick="window.location.href='{% url 'dashboard' %}'">Dashboard</button>
+        <button onclick="window.location.href='{% url 'calculate_investment' %}'">Recommended</button>
+
+    </div>
+
+</body>
+</html>

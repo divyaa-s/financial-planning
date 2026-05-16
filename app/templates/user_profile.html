@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    <div class="user-profile-container">
+        <h1>User Profile</h1>
+        <div class="user-details-container">
+            <div class="user-details">
+                <p><strong>Username:</strong> {% if user_name %} {{ user_name }} {% else %} None {% endif %}</p>
+                <p><strong>Join Date:</strong> 29/04/2024</p>
+            </div>
+        </div>
+        
+        
+        <div class="language-selection-container">
+            <h2>Language Preferences</h2>
+            <div class="language-selection">
+                <form action="{% url 'profile' %}" method="post">
+                    {% csrf_token %}
+                    <label for="language">Preferred Language:</label>
+                    <select name="language" id="language">
+                        <option value="en">English</option>
+                        <option value="ta">Tamil</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ml">Malayalam</option>
+                    </select>
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+        <div class="change-password-container">
+            <h2>Change Password</h2>
+            <div class="change-password">
+                <form id="password-change-form">
+                    {% csrf_token %}
+                    <label for="old-password">Old Password:</label>
+                    <input type="password" id="old-password" name="old-password"><br>
+    
+                    <label for="new-password">New Password:</label>
+                    <input type="password" id="new-password" name="new-password"><br>
+    
+                    <label for="confirm-password">Confirm New Password:</label>
+                    <input type="password" id="confirm-password" name="confirm-password"><br>
+    
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="navigation-buttons">
+            <button onclick="window.location.href='{% url 'dashboard' %}'">Dashboard</button>
+    
+        </div>
+    </div>
+    
+</body>
+</html>

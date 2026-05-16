@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Dashboard</h1>
+        </div>
+        
+        <!-- Donut Chart -->
+        <div class="chart-container">
+            <canvas id="myDoughnutChart" width="300" height="300"></canvas>
+        </div>
+        
+        <!-- Profile button -->
+        <button class="profile-button" onclick="window.location.href='{% url 'profile' %}'">Profile</button>
+
+        <!-- Navigation buttons -->
+        <div class="navigation-buttons">
+            <button onclick="window.location.href='{% url 'schemes' %}'">Schemes</button>
+            <button onclick="window.location.href='{% url 'calculate' %}'">Expenses</button>
+            <button onclick="window.location.href='{% url 'display' %}'">Summary</button>
+            <button onclick="window.location.href='{% url 'stocks' %}'">Stock Market</button>
+            <button onclick="window.location.href='{% url 'calendar' %}'">Calendar</button>
+            <button onclick="window.location.href='{% url 'input_form' %}'">Analyze</button>
+            <button onclick="window.location.href='{% url 'help' %}'">Help</button>
+        </div>
+    </div>
+
+    <!-- Script for creating the donut chart -->
+    
+
+    
+    <script>
+        // Get data from the context passed from the view
+        var incomeData = {{ income_data|safe }};
+        var expenseData = {{ expense_data|safe }};
+
+        // Calculate total income and expenses
+        // Get the last row data
+        var lastRowIncome = incomeData[incomeData.length - 1];
+        var lastRowExpenses = expenseData[expenseData.length - 1];
+
+        // Calculate total income and expenses from the last row
+        var totalIncome = parseFloat(lastRowIncome);
+        var totalExpenses = parseFloat(lastRowExpenses);
+
+        // Calculate remaining balance
+        var remainingBalance = totalIncome - totalExpenses;
+
+
+        // Render the donut chart
+        var ctx = document.getElementById('myDoughnutChart').getContext('2d');
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Income', 'Expenses', 'Remaining Balance'],
+                datasets: [{
+                    data: [totalIncome, totalExpenses, remainingBalance],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.5)',
+                        'rgba(255, 99, 132, 0.5)',
+                        'rgba(75, 192, 192, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+
+</html>

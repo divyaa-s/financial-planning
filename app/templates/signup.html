@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<script>
+function displayAlert(message) {
+    alert(message);
+}
+</script>
+
+<body>
+    <div class="container">
+        <div class="form-container">
+            <form id="registrationForm" action="{% url 'signup' %}" method="post">
+                {% csrf_token %}
+                <h2>Registration</h2>
+                <input type="text" id="regUsername" name="regUsername" placeholder="Username" required><br>
+                <input type="password" id="regPassword" name="regPassword" placeholder="Password" required><br>
+                <input type="datetime" id="regDate" name="regDate" placeholder="Date"><br>
+                <button type="submit">Register</button>
+                <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+            </form>
+        {% if error %}
+        <script>
+        displayAlert("{{ error }}");
+        </script>
+        {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

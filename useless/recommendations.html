@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend Investment</title>
+</head>
+<body>
+    <h1>Recommended Investments</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Recommended Investment Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for username, recommended_investment in recommendations %}
+            <tr>
+                <td>{{ username }}</td>
+                <td>${{ recommended_investment|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

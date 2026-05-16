@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schemes</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/schemes.css' %}">
+</head>
+
+<body>
+    <div class="schemes-container">
+        <h1>Schemes</h1>
+        
+        <!-- High-Yield Savings Accounts -->
+        <div class="scheme-box">
+            <h2>High-Yield Savings Accounts</h2>
+            <p>High-yield savings accounts offer higher interest rates compared to traditional savings accounts.</p>
+            <p>These accounts help students grow their savings over time while keeping risk low.</p>
+            <p>Suitable for short-term savings goals.</p>
+        </div>
+        
+        <!-- Certificates of Deposit (CDs) -->
+        <div class="scheme-box">
+            <h2>Certificates of Deposit (CDs)</h2>
+            <p>CDs offer fixed interest rates for a specific term, allowing students to save securely.</p>
+            <p>They provide predictable returns and are available in various terms.</p>
+            <p>Ideal for those who can set aside funds for a fixed period.</p>
+        </div>
+        
+        <!-- Systematic Investment Plans (SIPs) -->
+        <div class="scheme-box">
+            <h2>Systematic Investment Plans (SIPs)</h2>
+            <p>SIPs allow students to invest small amounts regularly in mutual funds.</p>
+            <p>This helps build a diversified portfolio over time.</p>
+            <p>Offers flexibility and low-cost investing options.</p>
+        </div>
+        
+        <!-- Recurring Deposits (RDs) -->
+        <div class="scheme-box">
+            <h2>Recurring Deposits (RDs)</h2>
+            <p>RDs involve making regular deposits over a specified period.</p>
+            <p>They offer a higher interest rate than traditional savings accounts.</p>
+            <p>Great for disciplined saving and future financial planning.</p>
+        </div>
+    </div>
+<div class="navigation-buttons">
+        <button onclick="window.location.href='{% url 'dashboard' %}'">Dashboard</button>
+</div>
+    <script src="{% static 'js/schemes.js' %}"></script>
+</body>
+
+</html>
