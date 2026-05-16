@@ -1,0 +1,9 @@
+Django
+yfinance
+textblob
+nltk
+spacy
+scikit-learn
+numpy
+joblib
+requests
